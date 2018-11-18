@@ -235,9 +235,13 @@ var methods ={
 					console.log(res.data[x].transaction);
 				}
 			}
-			// console.log(obj);
-			var json = JSON.stringify(obj);
-			fs.writeFile('trans.json', json);
+			// // console.log(obj);
+			// var json = JSON.stringify(obj);
+			// fs.writeFile('trans.json', json);
+			fs.writeFile('trans.json', JSON.stringify(obj), (err) => {
+				if (err) throw err
+				console.log('The file has been saved!')
+			  })
 		}, function(err) {
 			console.error(err);
 		});

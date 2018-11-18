@@ -1,13 +1,14 @@
 const express = require('express');
 const router = express.Router(); //eslint-disable-line
 const process = require('./processRouter');
+const SimpleJsonStore = require('simple-json-store');
 
-router.post('/',(req,res) =>{
-    const input ={
-		recipient : req.body.recipient
-    };
+const store = new SimpleJsonStore('./trans.json');
 
-    process.getAllInfo(input.recipient);
+router.get('/',(req,res) =>{
+    process.getAllInfo();
+    const users = store.get('transactions');
+    res.json(users);
 });
 
 

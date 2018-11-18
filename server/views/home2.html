@@ -33,24 +33,30 @@
   
 <div class="container">
     <h3>Dashboard</h3>
-    <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
-        <div class="card-header"> Header </div>
-             <div class="card-body">
-                <h4 class="card-title"> User Balance: </h4>
-                <p id='balance' class="card-text"></p>
-              </div>
-    </div>
-    <!-- <div class="container">
+    <div class="container">
     <table id="historyTable" class="table table-hover">
-        <thead>
+      <tr>
+        <th> Transaction ID </th>
+        <th> Transaction Type </th>
+        <th> Date </th>
+        <th> Recipient </th>
+        <th> Amount </th>
+        <th> Mosaic </th>
+      </tr>
+      <tr v-for="histo in history">
+        <td> {{ histo.transID }} </td>
+        <td> {{ histo.type }} </td>
+        <td> {{ histo.date }} </td>
+        <td> {{ histo.recipient }} </td>
+        <td> {{ histo.amount }} </td>
+        <td> {{ histo.mosaic }} </td>
+    </tr>
+      
+      <tbody>
 
-        </thead>
-        
-        <tbody>
-
-        </tbody>
+      </tbody>
     </table>
-    </div> -->
+    </div>
 </div>
 <div id="qrcode"></div>
 </body>

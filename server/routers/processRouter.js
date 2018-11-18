@@ -6,6 +6,7 @@ var endpoint = nem.model.objects.create('endpoint')(
 		  nem.model.nodes.defaultTestnet, // Change to "defaultMainnet"
 		  nem.model.nodes.defaultPort
 		);
+		 
 
 var methods ={
 	createWallet : function(){
@@ -174,24 +175,72 @@ var methods ={
 		});
 	},
 
-	getAllInfo: function(output){
+	getAllInfo: function(){
 		var address = 'TCPMBZODECCBZVDHVRWWWYQCOYIP5CN5ZHWXAIOG';
-		output = nem.com.requests.account.transactions.all(endpoint, address).then(function(res) {
+		nem.com.requests.account.transactions.all(endpoint, address).then(function(res) {
+			var obj = {
+				transactions: []
+			};
+			fs.createWriteStream('trans.json');
+
 			console.log("\nAll transactions of the account:");
-			// console.log(res.data[0].meta.hash.data);
 			var temp = res.data[0].meta.hash.data;
 			// console.log(res.data[0])
-			if(address === res.data[0].transaction.recipient){
-				return(res.data[0].transaction.recipient);
+			for(x = 0; x < res.data.length; x++){
+				// console.log(res.data[x]);
+				if(res.data[x].transaction.type == 257) {
+					var obj1 = res.data[x].transaction.mosaics;
+					if(obj1 === undefined){
+						// console.log('fck');
+					}
+					else
+					{
+						var amount = obj1[0].quantity;
+						var mosaicname = obj1[0].mosaicId.name;
+						console.log(obj1);
+					}
+					if(address === res.data[x].transaction.recipient){
+						var id = x+1;
+						var transType = 'receive';	
+						var time = res.data[x].transaction.timeStamp;
+						var recipient = res.data[x].transaction.recipient; 
+						obj.transactions.push({transID: id, type: transType, date: time, recipient: recipient, amount: amount, mosaic: mosaicname});
+					}
+					else {
+						if(obj1 === undefined){
+							// console.log('fck');
+						}
+						else
+						{
+							var amount = obj1[0].quantity;
+							var mosaicname = obj1[0].mosaicId.name;
+						console.log(obj1);
+						}
+						var id = x+1;
+						var transType = 'send';
+						var time = res.data[x].transaction.timeStamp;
+						var recipient = res.data[x].transaction.recipient; 
+						obj.transactions.push({transID: id, type: transType, date: time, recipient: recipient, amount: amount, mosaic: mosaicname});
+						var json = JSON.stringify(obj);
+					}
+				}
+				else if(res.data[x].transaction.type == 16385){
+					var id = x+1;
+					var transType = 'create mosaic';	
+					var time = res.data[x].transaction.timeStamp;
+					var recipient = res.data[x].transaction.creationFeeSink;
+					var mosaicName = res.data[x].transaction.mosaicDefinition.description;
+					var amount = res.data[x].transaction.fee/1000000;
+					obj.transactions.push({transID: id, type: transType, date: time, recipient: recipient, amount: amount, mosaic: mosaicname});
+					console.log(res.data[x].transaction);
+				}
 			}
-			else {
-				console.log('malaki');
-			}
+			// console.log(obj);
+			var json = JSON.stringify(obj);
+			fs.writeFile('trans.json', json);
 		}, function(err) {
 			console.error(err);
 		});
-
-		console.log(output);
 	}
 }
 module.exports = methods;

@@ -8,7 +8,7 @@
     var quantity = document.getElementById('quantity');
     var message = document.getElementById('message');
     var mosaicName = document.getElementById('mosaicName');
-    
+    console.log(mosaicName.value);
 		axios.post('http://localhost:3000/api/transfer',{ recipient: recipient.value, quantity: quantity.value, message: message.value, mosaicName: mosaicName.value})
 			.then(function(res){
 				if(res.data.recipient !== null && res.data.quantity !== null){

@@ -141,7 +141,7 @@ var methods ={
 					var preparedTransaction = nem.model.transactions.prepare('mosaicTransferTransaction')(common, transferTransaction, mosaicDefinitions, nem.model.network.data.testnet.id);
 					preparedTransaction.fee = 1000000;
 
-					nem.model.transactions.send(common, preparedTransaction, endpoint).then(function(res){							console.log(res);
+					nem.model.transactions.send(common, preparedTransaction, endpoint).then(function(res){console.log(res);
 					},function(err){
 							console.log(err);
 					});
@@ -172,6 +172,26 @@ var methods ={
 		},function(err){
 			console.log(err);
 		});
+	},
+
+	getAllInfo: function(output){
+		var address = 'TCPMBZODECCBZVDHVRWWWYQCOYIP5CN5ZHWXAIOG';
+		output = nem.com.requests.account.transactions.all(endpoint, address).then(function(res) {
+			console.log("\nAll transactions of the account:");
+			// console.log(res.data[0].meta.hash.data);
+			var temp = res.data[0].meta.hash.data;
+			// console.log(res.data[0])
+			if(address === res.data[0].transaction.recipient){
+				return(res.data[0].transaction.recipient);
+			}
+			else {
+				console.log('malaki');
+			}
+		}, function(err) {
+			console.error(err);
+		});
+
+		console.log(output);
 	}
 }
 module.exports = methods;

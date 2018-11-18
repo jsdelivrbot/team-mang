@@ -18,13 +18,13 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="home.html">WebSiteName</a>
+      <a class="navbar-brand" href="/home">WebSiteName</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li><a href="/home">Home</a></li>    
-        <li><a href="deposit.html">Deposit</a></li>
-        <li><a href="withdraw.html">Withdraw</a></li>
+        <li><a href="/deposit">Deposit</a></li>
+        <li><a href="/withdraw">Withdraw</a></li>
         <li class="active"><a href="#">Transfer</a></li>
       </ul>
     </div>
@@ -32,7 +32,7 @@
 </nav>
   
 <div class="container">
-    <h3>Transfer</h3>
+    <h3>Transfer Mosaic</h3>
     <form id="Login">
         <div class="form-group">
             <input type="text" class="form-control" id="recipient" placeholder="Recipient">
@@ -44,9 +44,15 @@
           <input type="text" class="form-control" id="message" placeholder="Message">
       </div>
       <div class="form-group">
-        <input type="text" class="form-control" id="mosaicName" placeholder="Mosaic Name">
+        <!-- <input type="text" class="form-control" id="mosaicName" placeholder="Mosaic Name"> -->
+        <select class="form-control" id="mosaicName">
+          <option value="pera">Baranggay 1</option>
+          <option value="">Saab</option>
+          <option value="mercedes">Mercedes</option>
+          <option value="audi">Audi</option>
+        </select>
     </div>
-    <button id="transfer" type="submit" class="btn btn-primary">Add Member</button>
+    <button id="transfer" type="submit" class="btn btn-primary" href="/transfer">Transfer</button>
     </form>
 </div>
 </body>

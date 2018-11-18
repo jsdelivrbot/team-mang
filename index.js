@@ -11,6 +11,7 @@ const indexRouter = require('./server/routers/indexRouter');
 const signinRouter = require('./server/routers/signinRouter');
 const signupRouter = require('./server/routers/signupRouter');
 const transferRouter = require('./server/routers/transferRouter');
+const dashRouter = require('./server/routers/dashRouter');
 
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -38,6 +39,7 @@ app.use('/',indexRouter);
 app.use('/api/signIn',signinRouter);
 app.use('/api/signUp',signupRouter);
 app.use('/api/transfer',transferRouter);
+app.use('/api/dash',dashRouter);
 
 
 app.listen(port, () => {

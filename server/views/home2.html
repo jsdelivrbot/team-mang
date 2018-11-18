@@ -22,8 +22,8 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li><a href="/home">Home</a></li>    
-        <li class="active"><a href="#">Deposit</a></li>
+        <li class="active"><a href="#">Home</a></li>    
+        <li><a href="/deposit">Deposit</a></li>
         <li><a href="/withdraw">Withdraw</a></li>
         <li><a href="/transfer">Transfer</a></li>
       </ul>
@@ -32,18 +32,29 @@
 </nav>
   
 <div class="container">
-    <h3>Deposit</h3>
-    <form id="Login">
-        <div class="form-group">
-            <input type="text" class="form-control" id="user" placeholder="Username">
-        </div>
-        <div class="form-group">
-            <input type="password" class="form-control" id="pass" placeholder="Password">
-        </div>
-    <button id="createAccount" type="submit" class="btn btn-primary">Add Member</button>
-    </form>
+    <h3>Dashboard</h3>
+    <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+        <div class="card-header"> Header </div>
+             <div class="card-body">
+                <h4 class="card-title"> User Balance: </h4>
+                <p id='balance' class="card-text"></p>
+              </div>
+    </div>
+    <!-- <div class="container">
+    <table id="historyTable" class="table table-hover">
+        <thead>
+
+        </thead>
+        
+        <tbody>
+
+        </tbody>
+    </table>
+    </div> -->
 </div>
+<div id="qrcode"></div>
 </body>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="/create.js"></script>
+<script src="/dash.js"></script>
+<script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
 </html>

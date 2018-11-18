@@ -34,13 +34,19 @@
 <div class="container">
     <h3>Deposit</h3>
     <form id="Login">
-        <div class="form-group">
-            <input type="text" class="form-control" id="user" placeholder="Username">
-        </div>
-        <div class="form-group">
-            <input type="password" class="form-control" id="pass" placeholder="Password">
-        </div>
-    <button id="createAccount" type="submit" class="btn btn-primary">Add Member</button>
+      <div class="form-group">
+          <input type="text" class="form-control" id="amount" placeholder="Amount">
+      </div>
+      <div class="form-group">
+        <!-- <input type="text" class="form-control" id="mosaicName" placeholder="Mosaic Name"> -->
+        <select class="form-control" id="mosaicName">
+          <option value="pera">Baranggay 1</option>
+          <option value="pera">Baranggay 2</option>
+          <option value="pera">Baranggay 3</option>
+          <option value="pera">Baranggay 4</option>
+        </select>
+      </div>
+    <button id="createAccount" type="submit" class="btn btn-primary" href="/deposit">Add Member</button>
     </form>
 </div>
 </body>
